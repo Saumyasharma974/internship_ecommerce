@@ -7,11 +7,14 @@ import RelatedProducts from '../components/RelatedProducts';
 const Product = () => {
 
   const {productId} = useParams();
-  const {products, currency, addToCart} = useContext(ShopContext);
+  const {products, currency, addToCart,navigate} = useContext(ShopContext);
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState('');
   const [size, setSize] = useState('');
 
+  if(!localStorage.getItem("token")){
+    navigate("/login");
+    }
   const fetchProductData = async () => {
     products.map((item) => {
       if (item._id === productId) {

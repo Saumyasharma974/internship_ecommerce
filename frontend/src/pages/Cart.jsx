@@ -5,9 +5,13 @@ import { assets } from '../assets/assets';
 import CartTotal from '../components/CartTotal';
 
 const Cart = () => {
+  
   const { products, currency, cartItems, updateQuantity, navigate } = useContext(ShopContext);
   const [cartData, setCartData] = useState([]);
 
+  if(!localStorage.getItem("token")){
+   navigate("/login");
+    }
   useEffect(() => {
 if (products.length>0) {
       const tempData = [];
